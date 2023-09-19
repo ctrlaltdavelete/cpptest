@@ -1,0 +1,15 @@
+get_filename_component(HUMAN_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(CMakeFindDependencyMacro)
+
+list(APPEND CMAKE_MODULE_PATH ${HUMAN_CMAKE_DIR})
+# NOTE: to find FindRapidJSON.cmake
+#find_dependency(RapidJSON @MIN_RapidJSON_VERSION@)
+#list(REMOVE_AT CMAKE_MODULE_PATH -1)
+
+#find_dependency(boost_regex @MIN_BOOST_VERSION@)
+
+if(NOT TARGET Human::Human)
+    include("${HUMAN_CMAKE_DIR}/HumanTargets.cmake")
+endif()
+
+set(HUMAN_LIBRARIES Human::Human)
